@@ -1,6 +1,6 @@
 class LibraryParser
   def files
-    data_path = File.join(File.dirname(__FILE__), '..', 'db', 'data')
+    data_path = File.join(File.dirname(__FILE__), '..', 'db', '/data')
     Dir.entries(data_path)[2..-1]
   end
 
@@ -9,6 +9,7 @@ class LibraryParser
   end
 
   def parse_filename(filename)
+    # "Tiger & Woods - Gin Nation [hip-hop].mp3"
     artist_match = filename.match(/^(.*) -/)
     song_match   = filename.match(/- (.*) \[/)
     genre_match  = filename.match(/\[([^\]]*)\]/)
@@ -32,9 +33,10 @@ class LibraryParser
     genre = Genre.find_or_create_by(name: genre_name)
     artist = Artist.find_or_create_by(name: artist_name)
 
-    song.song_genres.build(genre: genre)
+    SongGenre.create(genre_id: genre.id, song_id: song.id)
     song.artist = artist
     
     song.save
+    puts "hi"
   end
 end
