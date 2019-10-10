@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2015_06_29_133457) do
+=======
+ActiveRecord::Schema.define(version: 2019_10_09_180808) do
+>>>>>>> tc-soln
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
